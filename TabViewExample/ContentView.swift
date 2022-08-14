@@ -8,14 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var path = NavigationPath()
+    @State private var selectedTab: TabType = .chats
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationStack {
+            TabView(selection: $selectedTab) {
+                ForEach(Array(TabType.allCases)) { tab in
+                    SimpleView(title: tab.title)
+                        .tabItem {
+                            Label(tab.title, systemImage: tab.systemImage)
+                        }
+                        .tag(tab)
+                }
+            }
+            .navigationTitle(selectedTab.title)
         }
-        .padding()
     }
 }
 
