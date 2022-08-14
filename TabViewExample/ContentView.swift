@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var path = NavigationPath()
     @State private var selectedTab: TabType = .chats
 
     var body: some View {
